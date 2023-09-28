@@ -1,0 +1,24 @@
+---
+interface Props {
+    rutas: {
+        ruta: string,
+        nombre: string,
+        esActual: boolean
+    }[]
+}
+
+const { rutas } = Astro.props
+---
+<div class="flex flex-row items-end justify-between">
+    <div transition:persist class="p-3">
+        <h3 class="md:hidden">CENDII</h1>
+        <h3 class="hidden md:block">Centro de Documentación de Ingeniería Industrial</h1>
+    </div>
+    <div class="pr-3 flex flex-row">
+        { rutas.sort(({ ruta: rA }, { ruta: rB }) => rA.length - rB.length).map(({ ruta, nombre, esActual }) => {
+            const clase = `block px-5 py-3 rounded-t-lg ${esActual ? 'text-white bg-cendii-cyan underline' : 'transition-colors hover:bg-cendii-blue hover:text-white'}`
+
+            return <a class={clase} href={ruta}>{ nombre }</a>
+        }) }
+    </div>
+</div>

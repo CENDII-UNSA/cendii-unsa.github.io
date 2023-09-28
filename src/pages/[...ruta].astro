@@ -1,0 +1,32 @@
+---
+import { obtenerPáginasPublicadas, obtenerPágina } from '@Library/notion';
+import { Principal } from "@Layouts";
+import { marked } from 'marked'
+import type { GetStaticPaths } from "astro";
+
+export const getStaticPaths = (async () => {
+    const páginasPublicadas = await obtenerPáginasPublicadas()
+
+    return páginasPublicadas.map(página => ({ // Con las páginas publicadas, se pueden construir todas las rutas
+        params: { // Necesario para "cendii.github.io/[...ruta]"
+            ruta: página.ruta
+        },
+        props: {
+            id: página.id, // Cada página cargará la información por su cuenta, así que necesitan la ID para buscarla
+            nombre: página.nombre, // Para el título de la pestaña
+        }
+    }))
+}) satisfies GetStaticPaths;
+
+interface Props {
+    id: string,
+    nombre: string,
+}
+
+const { id, nombre } = Astro.props
+
+const { parent: html } = await obtenerPágina(id)
+---
+<Principal title={nombre} clase='flex flex-col gap-3'>
+    <Fragment set:html={marked.parse(html)} />
+</Principal>

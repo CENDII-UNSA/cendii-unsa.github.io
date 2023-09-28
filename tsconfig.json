@@ -1,0 +1,13 @@
+{
+  "extends": "astro/tsconfigs/strict",
+  "compilerOptions": {
+    "jsx": "preserve",
+    "baseUrl": ".",
+    "paths": {
+      "@Layouts": [ "src/layouts/index.astro" ],
+      "@Componentes": [ "src/components/index.astro" ],
+      "@Library/*": [ "src/library/*" ],
+      "@Assets/*": [ "src/assets/*" ]
+    }
+  }
+}

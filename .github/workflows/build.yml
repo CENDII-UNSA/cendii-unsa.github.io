@@ -1,0 +1,39 @@
+name: Construir página del CENDII
+
+on:
+  schedule:
+    - cron: "0 0 * * *"
+  
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Obtener código
+        uses: actions/checkout@v3
+      
+      - name: Instalar, construir y subir el sitio con Astro
+        uses: withastro/action@v1
+        env:
+          NOTION_INTEGRATION_KEY: ${{ secrets.NOTION_INTEGRATION_KEY }}
+          NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}
+          NOTION_BOOK_DATABASE_ID: ${{ secrets.NOTION_BOOK_DATABASE_ID }}
+          NOTION_PRESENTATION_ID: ${{ secrets.NOTION_PRESENTATION_ID }}
+  
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Desplegar a Github Pages
+        id: deployment
+        uses: actions/deploy-pages@v1

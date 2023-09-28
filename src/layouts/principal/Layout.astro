@@ -1,0 +1,38 @@
+--- 
+import { ViewTransitions } from 'astro:transitions';
+import '@fontsource/russo-one'
+import '@fontsource-variable/inter'
+import './base.css'
+import { Navbar } from '@Componentes';
+import { obtenerNavbar } from '@Library/notion';
+
+interface Props {
+	title: string;
+	clase?: string
+}
+
+const { title, clase = '' } = Astro.props;
+
+const rutas = await obtenerNavbar(title, [ { nombre: 'Libros', ruta: 'libros' } ])
+---
+<!DOCTYPE html>
+<html lang="es" transition:animate="none">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="Sitio web del Centro de Documentacion de Ingeniería Industrial de la UNSA">
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" href="/favicon.ico" />
+		<meta name="generator" content={Astro.generator} />
+		<title>CENDII - {title}</title>
+		<ViewTransitions />
+	</head>
+	<body class="w-screen h-screen flex flex-col">
+		<header class="w-full shrink">
+			<Navbar rutas={rutas} />
+  			<div class="pb-1 bg-cendii-cyan"></div>
+		</header>
+		<div class={"grow w-full max-w-[1060px] mx-auto p-3 " + clase}>
+			<slot />
+		</div>
+	</body>
+</html>

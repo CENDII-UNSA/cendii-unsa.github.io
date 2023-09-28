@@ -1,0 +1,26 @@
+---
+import { Principal } from "@Layouts";
+import { obtenerExistencias } from "@Library/notion";
+import lupaSVG from '@Assets/lupa.svg?raw'
+
+const existencias = await obtenerExistencias()
+---
+<Principal title='Libros' clase='grid grid-rows-[auto_auto_1fr_auto] gap-2' >
+    <h1>Listado de libros</h1>
+    <form class="w-full overflow-hidden flex flex-row rounded-md border-2 border-cendii-cyan"  data-existencias={JSON.stringify(existencias)}>
+        <div class="shrink [&_svg]:stroke-white [&_svg]:h-[1.5rem] bg-cendii-cyan p-3">
+            <Fragment set:html={lupaSVG} />
+        </div>
+        <div class="grow">
+            <input class="p-3 w-full focus:outline-0" name="texto" type="search" required minlength="2" placeholder="Escriba parte del título, del nombre del autor, o alguna etiqueta" />
+        </div>
+    </form>
+    <div class="relative overflow-y-auto overflow-x-hidden">
+        <div id="database" class="absolute w-full"></div>
+    </div>
+    <div>
+        <p class="italic">Búsquedas realizadas mediante <a class="underline text-cendii-cyan" href="https://www.fusejs.io/examples.html#extended-search" data-astro-reload>Fuse.JS</a></p>
+    </div>
+</Principal>
+
+<script src="../library/libros.ts"></script>

@@ -1,0 +1,10 @@
+---
+import { Principal } from '@Layouts'
+import { obtenerPágina } from "@Library/notion";
+import { marked } from 'marked'
+
+const { parent: html } = await obtenerPágina(import.meta.env.NOTION_PRESENTATION_ID, true)
+---
+<Principal title='Presentación' clase='flex flex-col gap-3'>
+    <Fragment set:html={marked.parse(html)} />
+</Principal>
