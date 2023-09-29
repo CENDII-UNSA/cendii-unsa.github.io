@@ -31,7 +31,7 @@ if (form && database) {
             const fuse = new Fuse(existencias, {
                 includeScore: true,
                 shouldSort: true,
-                threshold: 0.5,
+                threshold: 0.125,
                 keys: [
                     {
                         name: 'título',
@@ -40,10 +40,6 @@ if (form && database) {
                     {
                         name: 'autores',
                         weight: 1
-                    },
-                    {
-                        name: 'etiquetas',
-                        weight: 0.5
                     },
                     {
                         name: 'tipo',
@@ -56,13 +52,12 @@ if (form && database) {
                 ]
             })
 
-            const resultado = fuse.search(texto).filter(resultado => resultado.score).sort((rA, rB) => (rA.score || 0) - (rB.score || 0)).map(resultado => resultado.item)
-            existenciasMostradas.val = resultado
-            console.log("EXISTENCIAS:", existencias)
-            console.log("RESULTADO: ", resultado)
+            existenciasMostradas.val = fuse.search(texto).filter(resultado => resultado.score).sort((rA, rB) => (rA.score || 0) - (rB.score || 0)).map(respuesta => respuesta.item)
+
+	        const input = document.querySelector<HTMLInputElement>("input[name='texto']")
+            if (input) input.value = texto
         } else {
             existenciasMostradas.val = existencias
-            console.log("EXISTENCIAS:", existencias)
         }
     })
 

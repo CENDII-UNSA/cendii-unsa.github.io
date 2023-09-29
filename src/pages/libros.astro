@@ -6,7 +6,7 @@ import lupaSVG from '@Assets/lupa.svg?raw'
 const existencias = await obtenerExistencias()
 ---
 <Principal title='Libros' clase='grid grid-rows-[auto_auto_1fr_auto] gap-2' >
-    <h1>Listado de libros</h1>
+    <h1>Listado de Libros, Tesis y Proyectos</h1>
     <form class="w-full overflow-hidden flex flex-row rounded-md border-2 border-cendii-cyan"  data-existencias={JSON.stringify(existencias)}>
         <div class="shrink [&_svg]:stroke-white [&_svg]:h-[1.5rem] bg-cendii-cyan p-3">
             <Fragment set:html={lupaSVG} />

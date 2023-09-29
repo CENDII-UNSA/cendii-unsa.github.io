@@ -1,54 +1,36 @@
-# Astro Starter Kit: Basics
+# CENDII UNSA
 
-```
-npm create astro@latest -- --template basics
-```
+Este es el código de la página del Centro de Documentación de Ingeniería Industrial de la UNSA
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
+## Instalación
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+```sh
+git clone https://github.com/CENDII-UNSA/cendii-unsa.github.io.git cendii
 
-![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
+cd cendii
 
-## 🚀 Project Structure
+npm install
 
-Inside of your Astro project, you'll see the following folders and files:
-
-```
-/
-├── public/
-│   └── favicon.svg
-├── src/
-│   ├── components/
-│   │   └── Card.astro
-│   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
-└── package.json
+npm run dev
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Funcionamiento
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+La página integra [Notion](https://www.notion.so/) como una CMS para diversas fuentes de información.
 
-Any static assets, like images, can be placed in the `public/` directory.
+Sirve como forma de generar las páginas a mostrar de manera sencilla sin necesidad de que el editor sepa programar.
 
-## 🧞 Commands
+También permite mostrar todos los libros / tesis / proyectos que están en la biblioteca al público.
 
-All commands are run from the root of the project, from a terminal:
+## Tecnologías Usadas
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:3000`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+- **[Astro JS](https://astro.build/):** Retorna HTML compilado en el servidor, reduciendo significativamente la cantidad de código enviado al usuario
+- **[FuseJS](https://www.fusejs.io/):** Permite realizar búsquedas difusas de la información de los libros sin necesidad de algo como [Algolia](https://www.algolia.com/)
+- **[VanJS](https://vanjs.org/):** Facilidad de tener reactividad en el lado del cliente y de muy poco peso sin necesidad de un framework grande como [React](https://react.dev/) o [Vue](https://vuejs.org/)
+- **[Tailwind CSS](https://tailwindcss.com/):** Estilizado fácil de los diferentes elementos de la página
 
-## 👀 Want to learn more?
+## Colaboración
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+Estamos completamente abiertos a contribuciones, ya sea en forma de *pull requests*, creando *issues*, etc.
+
+Estamos a favor de las tecnologías de código abierto, por lo que compartimos la filosofía de las contribuciones.
